@@ -37,10 +37,6 @@ public class Controleur {
     @Enumerated(EnumType.STRING)
     private SurveillanceLevel surveillance;
 
-    private String shiftStart;
-
-    private String shiftEnd;
-
     private String status;
 
     @OneToMany(mappedBy = "controleur")
