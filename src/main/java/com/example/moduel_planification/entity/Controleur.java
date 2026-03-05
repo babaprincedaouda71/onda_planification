@@ -1,7 +1,7 @@
 package com.example.moduel_planification.entity;
 
-import com.example.moduel_planification.entity.enums.ProfilType;
-import com.example.moduel_planification.entity.enums.SurveillanceLevel;
+import com.example.moduel_planification.enums.ProfilType;
+import com.example.moduel_planification.enums.SurveillanceLevel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

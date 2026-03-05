@@ -1,6 +1,6 @@
 package com.example.moduel_planification.entity;
 
-import com.example.moduel_planification.entity.enums.TypeShift;
+import com.example.moduel_planification.enums.TypeShift;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

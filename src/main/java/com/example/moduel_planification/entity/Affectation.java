@@ -1,6 +1,6 @@
 package com.example.moduel_planification.entity;
 
-import com.example.moduel_planification.entity.enums.RoleAffectation;
+import com.example.moduel_planification.enums.RoleAffectation;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

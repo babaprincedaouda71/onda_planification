@@ -1,6 +1,6 @@
 package com.example.moduel_planification.entity;
 
-import com.example.moduel_planification.entity.enums.ComplexiteSecteur;
+import com.example.moduel_planification.enums.ComplexiteSecteur;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
