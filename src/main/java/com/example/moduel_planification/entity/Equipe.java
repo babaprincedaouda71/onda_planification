@@ -1,5 +1,6 @@
 package com.example.moduel_planification.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,11 +23,14 @@ public class Equipe {
     private Integer maxMembres;
 
     @OneToMany(mappedBy = "equipe")
+    @JsonIgnore
     private List<Controleur> membresEquipe;
 
     @OneToMany(mappedBy = "equipe")
+    @JsonIgnore
     private List<Shift> shifts;
 
     @OneToMany(mappedBy = "equipe")
+    @JsonIgnore
     private List<Alerte> alertes;
 }

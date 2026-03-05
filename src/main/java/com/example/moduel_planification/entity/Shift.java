@@ -1,6 +1,7 @@
 package com.example.moduel_planification.entity;
 
 import com.example.moduel_planification.enums.TypeShift;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,5 +30,6 @@ public class Shift {
     private Equipe equipe;
 
     @OneToMany(mappedBy = "shift")
+    @JsonIgnore
     private List<Secteur> secteurs;
 }

@@ -2,6 +2,7 @@ package com.example.moduel_planification.entity;
 
 import com.example.moduel_planification.enums.ProfilType;
 import com.example.moduel_planification.enums.SurveillanceLevel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -43,6 +44,7 @@ public class Controleur {
     private String status;
 
     @OneToMany(mappedBy = "controleur")
+    @JsonIgnore
     private List<Alerte> alertes;
 
     @ManyToOne
@@ -50,5 +52,6 @@ public class Controleur {
     private Equipe equipe;
 
     @OneToMany(mappedBy = "controleur")
+    @JsonIgnore
     private List<Affectation> affectations;
 }
