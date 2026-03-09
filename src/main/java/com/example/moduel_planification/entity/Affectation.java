@@ -17,6 +17,7 @@ public class Affectation {
     private Integer idAffectation;
 
     @Enumerated(EnumType.STRING)
+    @Column(length = 20)
     private RoleAffectation role;
 
     @ManyToOne
