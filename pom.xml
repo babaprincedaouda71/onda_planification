@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>moduel_planification</artifactId>
+    <artifactId>onda_planification_back</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>moduel_planification</name>
     <description>moduel_planification</description>
