@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -21,6 +23,9 @@ public class Alerte {
     @Enumerated(EnumType.STRING)
     private NiveauAlerte niveau;
 
+    @Column(updatable = false)
+    private LocalDateTime dateCreation;
+
     @ManyToOne
     @JoinColumn(name = "id_controleur")
     private Controleur controleur;
@@ -28,4 +33,9 @@ public class Alerte {
     @ManyToOne
     @JoinColumn(name = "id_equipe")
     private Equipe equipe;
+
+    @PrePersist
+    protected void onCreate() {
+        this.dateCreation = LocalDateTime.now();
+    }
 }

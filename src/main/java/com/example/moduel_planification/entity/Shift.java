@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -21,6 +22,10 @@ public class Shift {
     private Integer idShift;
 
     private LocalDate date;
+
+    private LocalTime heureDebut;
+
+    private LocalTime heureFin;
 
     @Enumerated(EnumType.STRING)
     private TypeShift typeShift;

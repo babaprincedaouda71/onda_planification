@@ -1,22 +1,27 @@
 package com.example.moduel_planification.web;
 
 import com.example.moduel_planification.entity.Shift;
+import com.example.moduel_planification.exception.ViolationReglementaireException;
+import com.example.moduel_planification.service.ReglementaireService;
 import com.example.moduel_planification.service.ShiftService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/shifts")
 public class ShiftController {
 
     private final ShiftService shiftService;
+    private final ReglementaireService reglementaireService;
 
     @Autowired
-    public ShiftController(ShiftService shiftService) {
+    public ShiftController(ShiftService shiftService, ReglementaireService reglementaireService) {
         this.shiftService = shiftService;
+        this.reglementaireService = reglementaireService;
     }
 
     @GetMapping
@@ -32,16 +37,26 @@ public class ShiftController {
     }
 
     @PostMapping
-    public Shift createShift(@RequestBody Shift shift) {
-        return shiftService.save(shift);
+    public ResponseEntity<?> createShift(@RequestBody Shift shift) {
+        try {
+            reglementaireService.validerDureeShift(shift);
+            return ResponseEntity.ok(shiftService.save(shift));
+        } catch (ViolationReglementaireException e) {
+            return ResponseEntity.badRequest().body(Map.of("code", e.getCode(), "message", e.getMessage()));
+        }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Shift> updateShift(@PathVariable Integer id, @RequestBody Shift shift) {
+    public ResponseEntity<?> updateShift(@PathVariable Integer id, @RequestBody Shift shift) {
         return shiftService.findById(id)
                 .map(existingShift -> {
-                    shift.setIdShift(id);
-                    return ResponseEntity.ok(shiftService.save(shift));
+                    try {
+                        reglementaireService.validerDureeShift(shift);
+                        shift.setIdShift(id);
+                        return ResponseEntity.ok((Object) shiftService.save(shift));
+                    } catch (ViolationReglementaireException e) {
+                        return ResponseEntity.badRequest().body((Object) Map.of("code", e.getCode(), "message", e.getMessage()));
+                    }
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
