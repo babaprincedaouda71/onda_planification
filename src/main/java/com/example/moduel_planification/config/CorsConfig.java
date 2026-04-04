@@ -13,8 +13,9 @@ public class CorsConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
+                // Allow specific domains from env var, default to Vite local dev and a potential Render URL pattern
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:5173") // Vite default port
+                        .allowedOrigins("http://localhost:5173", "https://*.onrender.com")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
