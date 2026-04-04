@@ -8,17 +8,6 @@ services:
     envVars:
       - key: PORT
         value: 8080
-      # Use an internal PostgreSQL database if you create one on Render
-      # Or your external database connection string
-      # - key: DATABASE_URL
-      #   fromDatabase:
-      #     name: onda-db
-      #     property: connectionString
-      # - key: DB_DIALECT
-      #   value: org.hibernate.dialect.PostgreSQLDialect
-
-  # Optional: Create a free PostgreSQL database
-  # - type: pgo
-  #   name: onda-db
-  #   plan: free
-  #   region: frankfurt
+      # Remplace par l'URL exacte de ton frontend Vercel après déploiement
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://ton-app.vercel.app
